@@ -27,7 +27,7 @@ Map {
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: true
-        //hoverEnabled: true
+        hoverEnabled: true
         onClicked: {
             selectedMountainId = -1
             var pos = map.toCoordinate( Qt.point( mouseX, mouseY ) )

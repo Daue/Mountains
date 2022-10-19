@@ -25,8 +25,10 @@ Window {
         }
 
         onHover: (id) => {
-         //popup.x = mouseX + 10
-        // popup.y = mouseY - popup.height - 5
+           var mousePos = cursor.getPos();
+           mousePos = map.mapFromGlobal( mousePos.x, mousePos.y );
+           popup.x = mousePos.x + 10
+           popup.y = mousePos.y - popup.height - 10
         }
 
         onHoverEnd: (id) => {

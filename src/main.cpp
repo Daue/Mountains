@@ -4,6 +4,7 @@
 
 #include "src/mountains_model.hpp"
 #include "src/mountain_role.hpp"
+#include "src/cursor.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -19,6 +20,9 @@ int main(int argc, char *argv[])
 
 	MountainsModel mountainsModel;
 	engine.rootContext()->setContextProperty( "mountainsModel", &mountainsModel );
+
+	Cursor cursor;
+	engine.rootContext()->setContextProperty( "cursor", &cursor );
 
 	engine.load( QStringLiteral( "qrc:/src/main.qml" ) );
 

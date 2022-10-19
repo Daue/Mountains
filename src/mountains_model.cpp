@@ -22,12 +22,28 @@ MountainsModel::MountainsModel( QObject* _parent )
 			m_mountains.push_back( mountain );
 		};
 
+	//sprawdz jescze raz wysokosci wszystkic szczytow, z ksiazeczki i internetu !!!!
+
 	add( "Rysy", "Tatry", 2499, QPointF( 49.17957166566931, 20.08810990531623 ) );
 	add( "Babia Góra", "Beskid Żywiecki", 1725, QPointF( 49.573021043950206, 19.52932991735267 ) );
 	add( "Śnieżka", "Karkonosze", 1602, QPointF( 50.73594285318304, 15.739781388817846 ) );
 	add( "Śnieżnik", "Masyw Śnieżnika", 1425, QPointF( 50.207405130034765, 16.847424756277604 ) );
 	add( "Tarnica", "Bieszczady", 1346, QPointF( 49.07477033353776, 22.7263211085218 ) );
 	add( "Turbacz", "Gorce", 1310, QPointF( 49.54282046569494, 20.111387520419697 ) );
+	add( "Radziejowa", "Beskid Sądecki", 1262, QPointF( 49.44930236567149, 20.60411998729188 ) );
+	add( "Skrzyczne", "Beskid Śląski", 1257, QPointF( 49.68457372268671, 19.03027417553065 ) );
+	add( "Mogielica", "Beskid Wyspowy", 1170, QPointF( 49.655320270343466, 20.276677187363447 ) );
+	add( "Wysoka Kopa", "Góry Izerskie", 1126, QPointF( 50.84999924537459, 15.420279309591223 ) );
+	add( "Rudawiec", "Góry Bialskie", 1112, QPointF( 50.244803687538585, 16.976860792705338 ) );
+	add( "Orlica", "Góry Orlickie", 1084, QPointF( 50.353249718091305, 16.360628613667473 ) );
+	add( "Wysoka", "Pieniny", 1050, QPointF( 49.38026085693358, 20.55549967152868 ) );
+	add( "Wielka Sowa", "Góry Sowie", 1015, QPointF( 50.68027699271707, 16.485556634387535 ) ); //blad na strontie korony.info
+	add( "Lackowa", "Beskid Niski", 997, QPointF( 49.4264825302071, 21.102470014422323 ) );
+	add( "Kowadło", "Góry Złote", 989, QPointF( 50.26442716084085, 17.013219883462455 ) );
+	add( "Jagodna", "Góry Bystrzyckie", 977, QPointF( 50.252456305922536, 16.56441859073834 ) );
+	add( "Skalnik", "Rudawy Janowickie", 945, QPointF( 50.80847811912257, 15.90005786067809 ) );
+	add( "Waligóra", "Góry Kamienne", 936, QPointF( 50.68082553190651, 16.278090958230962 ) );
+	add( "Czuple", "Beskid Mały", 934, QPointF( 49.7678796584515, 19.161027885583394 ) );
 }
 
 int

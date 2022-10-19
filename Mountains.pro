@@ -1,11 +1,13 @@
 QT += quick
 
 HEADERS += \
+	src/cursor.hpp \
 	src/mountain.hpp \
 	src/mountain_role.hpp \
 	src/mountains_model.hpp
 
 SOURCES += \
+	src/cursor.cpp \
 	src/main.cpp \
 	src/mountains_model.cpp
 
