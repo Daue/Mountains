@@ -43,7 +43,15 @@ MountainsModel::MountainsModel( QObject* _parent )
 	add( "Jagodna", "Góry Bystrzyckie", 977, QPointF( 50.252456305922536, 16.56441859073834 ) );
 	add( "Skalnik", "Rudawy Janowickie", 945, QPointF( 50.80847811912257, 15.90005786067809 ) );
 	add( "Waligóra", "Góry Kamienne", 936, QPointF( 50.68082553190651, 16.278090958230962 ) );
-	add( "Czuple", "Beskid Mały", 934, QPointF( 49.7678796584515, 19.161027885583394 ) );
+	add( "Czupel", "Beskid Mały", 934, QPointF( 49.7678796584515, 19.161027885583394 ) );
+	add( "Szczeliniec Wielki", "Góry Stołowe", 919, QPointF( 50.48481299047023, 16.341005512819663 ) );
+	add( "Lubomir", "Beskid Makowski", 912, QPointF( 49.766976569582674, 20.05969280030132 ) );
+	add( "Biskupia Kopa", "Góry Opawskie", 889, QPointF( 50.25670425476174, 17.42859807349089 ) );
+	add( "Chełmiec", "Góry Wałbrzyskie", 869, QPointF( 50.77954366856348, 16.210977664526126 ) );
+	add( "Kłodzka Góra", "Góry Bardzkie", 757, QPointF( 50.45166897225994, 16.753220590584277 ) );
+	add( "Skopiec", "Góry Kaczawskie", 724, QPointF( 50.94392885397913, 15.884709374302446 ) );
+	add( "Ślęża", "Masyw Ślęży", 718, QPointF( 50.864087656338135, 16.70749512412172 ) );
+	add( "Łysica", "Góry Świętokrzyskie", 612, QPointF( 50.891615685012155, 20.896594614342803 ) );
 }
 
 int
