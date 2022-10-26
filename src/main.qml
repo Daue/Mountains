@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 
 Window {
     width: 1200
@@ -7,40 +8,38 @@ Window {
     visible: true
     title: qsTr("Korona Gór Polski")
 
-    MapView{
-        id: map
+    SplitView
+    {
         anchors.fill: parent
-        zoomLevel: 7
-        model: mountainsModel
+        orientation: Qt.Horizontal
 
-        onSelectedMountainIdChanged: {
-            console.log( map.selectedMountainId )
-            console.log( mountainsModel.getMountainById( map.selectedMountainId ) )
+        Rectangle
+        {
+            SplitView.preferredWidth: 100
+            color: "red"
         }
 
-        onHoverStart: (id) => {
-            var mountain = mountainsModel.getMountainById( id );
-            popup.text = mountain.name + " " + mountain.height + " m n.p.m. (" + mountain.range + ")"
-            popup.opacity = 1.0;
-        }
+        MapView{
+            SplitView.fillWidth: true
 
-        onHover: (id) => {
-           var mousePos = cursor.getPos();
-           mousePos = map.mapFromGlobal( mousePos.x, mousePos.y );
-           popup.x = mousePos.x + 10
-           popup.y = mousePos.y - popup.height - 10
-        }
+            id: map
+            zoomLevel: 7
+            model: mountainsModel
 
-        onHoverEnd: (id) => {
-            popup.opacity = 0;
-        }
+            onSelectedMountainIdChanged: {
+                console.log( map.selectedMountainId )
+                console.log( mountainsModel.getMountainById( map.selectedMountainId ) )
+            }
 
-        Component.onCompleted: {
-            map.fitViewportToVisibleMapItems();
+            onHoverStart: (id) => {
+            }
+
+            onHover: (id) => {
+            }
+
+            onHoverEnd: (id) => {
+            }
         }
     }
 
-    Popup {
-        id: popup
-    }
 }

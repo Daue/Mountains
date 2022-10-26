@@ -17,7 +17,7 @@ RESOURCES += \
 DISTFILES += \
 	src/main.qml
 	src/MapView.qml
-	src/Popup.qml
+	src/MapPopup.qml
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

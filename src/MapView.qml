@@ -23,18 +23,6 @@ Map {
         }
     }
 
-    //to remove
-    MouseArea {
-        anchors.fill: parent
-        propagateComposedEvents: true
-        hoverEnabled: true
-        onClicked: {
-            selectedMountainId = -1
-            var pos = map.toCoordinate( Qt.point( mouseX, mouseY ) )
-            console.log( pos.latitude, pos.longitude )
-        }
-    }
-
     Repeater {
         id: repeater
 
@@ -44,12 +32,13 @@ Map {
             anchorPoint.x: sourceItem.width/2
             anchorPoint.y: sourceItem.height
             coordinate: QtPositioning.coordinate( model.position.x, model.position.y )
+            z: model.position.y
 
             sourceItem: Image {
                 source: "qrc:/img/res/mountain_pin.png"
                 antialiasing: true
-                sourceSize.width: 30
-                sourceSize.height: 60
+                sourceSize.width: 20
+                sourceSize.height: 40
             }
 
             MouseArea{
@@ -60,20 +49,40 @@ Map {
                 }
                 onEntered:
                 {
+                    var mountain = mountainsModel.getMountainById( id );
+                    popup.text = mountain.name + " " + mountain.height + " m n.p.m. (" + mountain.range + ")"
+                    popup.opacity = 1.0;
+
                     item.scale = 1.3
                     map.hoverStart( model.id );
                 }
 
-                onPositionChanged: {
+                onPositionChanged:
+                {
+                    var mousePos = cursor.getPos();
+                    mousePos = map.mapFromGlobal( mousePos.x, mousePos.y );
+                    popup.x = mousePos.x + 10
+                    popup.y = mousePos.y - popup.height - 10
+
                     map.hover( model.id );
                 }
 
                 onExited:
                 {
+                    popup.opacity = 0;
                     item.scale = 1
                     map.hoverEnd( model.id );
                 }
             }
         }
+    }
+
+    MapPopup {
+        id: popup
+        z: 1000
+    }
+
+    onMapReadyChanged: {
+         map.fitViewportToVisibleMapItems();
     }
 }
