@@ -15,8 +15,9 @@ Window {
 
         Rectangle
         {
-            SplitView.preferredWidth: 100
-            color: "red"
+            SplitView.preferredWidth: 300
+            color: "white"
+            opacity: 0.5
         }
 
         MapView{
