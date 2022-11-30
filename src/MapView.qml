@@ -50,8 +50,10 @@ Map {
                 onEntered:
                 {
                     var mountain = mountainsModel.getMountainById( id );
-                    popup.text = mountain.name + " " + mountain.height + " m n.p.m. (" + mountain.range + ")"
-                    popup.opacity = 1.0;
+
+                    popup.title = mountain.name + " (" + mountain.height + " m n.p.m.)"
+                    popup.description = mountain.range
+                    popup.show()
 
                     item.scale = 1.3
                     map.hoverStart( model.id );
@@ -69,7 +71,7 @@ Map {
 
                 onExited:
                 {
-                    popup.opacity = 0;
+                    popup.hide()
                     item.scale = 1
                     map.hoverEnd( model.id );
                 }
