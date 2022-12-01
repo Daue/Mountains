@@ -63,8 +63,15 @@ Map {
                 {
                     var mousePos = cursor.getPos();
                     mousePos = map.mapFromGlobal( mousePos.x, mousePos.y );
-                    popup.x = mousePos.x + 10
-                    popup.y = mousePos.y - popup.height - 10
+
+                    var popupOffset = 10;
+
+                    popup.x
+                        = mousePos.x + popupOffset + popup.width < map.width
+                        ? mousePos.x + popupOffset
+                        : mousePos.x - popup.width - popupOffset;
+
+                    popup.y = mousePos.y - popup.height - popupOffset;
 
                     map.hover( model.id );
                 }

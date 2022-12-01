@@ -4,7 +4,7 @@ Item {
 
     property alias title : _title.text
     property alias description: _description.text
-    property int fontSize: 10
+    property int margin: 15
 
     id: root
     opacity: 0.0
@@ -31,21 +31,22 @@ Item {
             width: childrenRect.width
             height: childrenRect.height
             anchors.centerIn: parent
+            spacing: 5
 
             Text {
                 id: _title
                 font.bold: true
-                font.pointSize: root.fontSize
+                font.pointSize: 10
             }
 
             Text {
                 id: _description
-                font.pointSize: root.fontSize
+                font.pointSize: 9
             }
 
             onChildrenRectChanged: {
-               root.width = childrenRect.width + 10
-               root.height = childrenRect.height + 10
+               root.width = childrenRect.width + root.margin
+               root.height = childrenRect.height + root.margin
             }
         }
     }
