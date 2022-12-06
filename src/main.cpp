@@ -21,6 +21,13 @@ int main(int argc, char *argv[])
 	MountainsModel mountainsModel;
 	engine.rootContext()->setContextProperty( "mountainsModel", &mountainsModel );
 
+	QSortFilterProxyModel mountainsSortModel;
+	mountainsSortModel.setSourceModel( &mountainsModel );
+	mountainsSortModel.setDynamicSortFilter( true );
+	mountainsSortModel.setSortRole( MountainRole::Type::Id );
+	mountainsSortModel.sort( 0 );
+	engine.rootContext()->setContextProperty( "mountainsSortModel", &mountainsSortModel );
+
 	Cursor cursor;
 	engine.rootContext()->setContextProperty( "cursor", &cursor );
 

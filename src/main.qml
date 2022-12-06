@@ -13,11 +13,23 @@ Window {
         anchors.fill: parent
         orientation: Qt.Horizontal
 
-        Rectangle
+        handle: Rectangle {
+               id: handleDelegate
+               implicitWidth: 4
+               implicitHeight: 4
+               color: SplitHandle.hovered ? Qt.lighter("darkseagreen", 1.1 ) : "darkseagreen"
+
+               containmentMask: Item {
+                   x: (handleDelegate.width - width) / 2
+                   width: 64
+                   height: splitView.height
+               }
+           }
+
+        MountainsListView
         {
-            SplitView.preferredWidth: 300
-            color: "white"
-            opacity: 0.5
+            SplitView.preferredWidth: 150
+            model: mountainsSortModel
         }
 
         MapView{

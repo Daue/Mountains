@@ -18,6 +18,7 @@ DISTFILES += \
 	src/main.qml
 	src/MapView.qml
 	src/MapPopup.qml
+	src/MountainsListView.qml
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
