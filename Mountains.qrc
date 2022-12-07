@@ -4,6 +4,7 @@
         <file>src/MapView.qml</file>
         <file>src/MapPopup.qml</file>
         <file>src/MountainsListView.qml</file>
+        <file>src/SplitViewHandle.qml</file>
     </qresource>
     <qresource prefix="/img">
         <file>res/mountain_pin.png</file>

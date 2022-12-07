@@ -14,11 +14,13 @@ SOURCES += \
 RESOURCES += \
 	Mountains.qrc
 
-DISTFILES += \
-	src/main.qml
-	src/MapView.qml
-	src/MapPopup.qml
-	src/MountainsListView.qml
+
+#DISTFILES += \
+#	src/main.qml \
+#	src/MapView.qml \
+#	src/MapPopup.qml \
+#	src/MountainsListView.qml \
+#	src/SplitViewHandle.qml
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

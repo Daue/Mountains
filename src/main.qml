@@ -12,19 +12,7 @@ Window {
     {
         anchors.fill: parent
         orientation: Qt.Horizontal
-
-        handle: Rectangle {
-               id: handleDelegate
-               implicitWidth: 4
-               implicitHeight: 4
-               color: SplitHandle.hovered ? Qt.lighter("darkseagreen", 1.1 ) : "darkseagreen"
-
-               containmentMask: Item {
-                   x: (handleDelegate.width - width) / 2
-                   width: 64
-                   height: splitView.height
-               }
-           }
+        handle: SplitViewHandle{}
 
         MountainsListView
         {
