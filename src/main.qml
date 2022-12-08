@@ -14,10 +14,17 @@ Window {
         orientation: Qt.Horizontal
         handle: SplitViewHandle{}
 
-        MountainsListView
+        ListView
         {
+            id: list
             SplitView.preferredWidth: 150
+
+            spacing: 2
+            anchors.margins: 2
             model: mountainsSortModel
+            delegate: ListDelegate{}
+            ScrollBar.vertical: ScrollBar {}
+            currentIndex: -1
         }
 
         MapView{
