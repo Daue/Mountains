@@ -32,16 +32,35 @@ Map {
             anchorPoint.x: sourceItem.width/2
             anchorPoint.y: sourceItem.height
             coordinate: QtPositioning.coordinate( model.position.x, model.position.y )
-            z: model.position.y
+            z: ( selectedMountainId === model.id ) ? 100 : model.position.y
+            scale: ( mouseArea.containsMouse || selectedMountainId === model.id ) ? 1.3 : 1
+            opacity: map.zoomLevel > 14 ? 0.7 : 1
 
             sourceItem: Image {
                 source: "qrc:/img/res/mountain_pin.png"
                 antialiasing: true
                 sourceSize.width: 20
                 sourceSize.height: 40
+
+                Rectangle {
+                    id: glow
+                    width: 38
+                    height: width
+                    color: "white"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.verticalCenterOffset: -2
+                    z: -1
+                    radius: width/2
+                    opacity: 0.8
+                    visible: selectedMountainId === model.id
+                    border.width: 1
+                    border.color: "green"
+                }
             }
 
             MouseArea{
+                id: mouseArea
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
@@ -55,7 +74,6 @@ Map {
                     popup.description = mountain.range
                     popup.show()
 
-                    item.scale = 1.3
                     map.hoverStart( model.id );
                 }
 
@@ -79,11 +97,15 @@ Map {
                 onExited:
                 {
                     popup.hide()
-                    item.scale = 1
                     map.hoverEnd( model.id );
                 }
             }
         }
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: selectedMountainId = -1
     }
 
     MapPopup {

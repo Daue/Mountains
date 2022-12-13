@@ -35,8 +35,8 @@ Window {
             model: mountainsModel
 
             onSelectedMountainIdChanged: {
-                console.log( map.selectedMountainId )
-                console.log( mountainsModel.getMountainById( map.selectedMountainId ) )
+                //console.log( map.selectedMountainId )
+                //console.log( mountainsModel.getMountainById( map.selectedMountainId ) )
             }
 
             onHoverStart: (id) => {
