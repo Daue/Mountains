@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import mountains 1.0
 
 Window {
     width: 1200
@@ -25,6 +26,29 @@ Window {
             delegate: ListDelegate{}
             ScrollBar.vertical: ScrollBar {}
             currentIndex: -1
+            highlightMoveDuration: 300
+
+            function findIndexByMountainId( _id )
+            {
+                for ( var i = 0; i < model.rowCount(); ++i )
+                {
+                    var mountainId = model.data( model.index(i,0), MountainRole.Id );
+                    if ( mountainId === _id )
+                        return i;
+                }
+
+                return -1;
+            }
+
+            onCurrentIndexChanged: {
+                if ( currentIndex == -1 )
+                {
+                    map.selectedMountainId = -1;
+                    return;
+                }
+
+                map.selectedMountainId = model.data( model.index( currentIndex,0), MountainRole.Id );
+            }
         }
 
         MapView{
@@ -35,8 +59,7 @@ Window {
             model: mountainsModel
 
             onSelectedMountainIdChanged: {
-                //console.log( map.selectedMountainId )
-                //console.log( mountainsModel.getMountainById( map.selectedMountainId ) )
+               list.currentIndex = list.findIndexByMountainId( map.selectedMountainId )
             }
 
             onHoverStart: (id) => {
