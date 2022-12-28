@@ -13,7 +13,7 @@ Rectangle {
     Text{
         id: _name
         font.bold: true
-        text: model.name
+        text: ( model.index + 1 ) + ". " + model.name
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.margins: 6

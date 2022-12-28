@@ -30,6 +30,9 @@ Window {
 
             function findIndexByMountainId( _id )
             {
+                if ( !model )
+                    return -1;
+
                 for ( var i = 0; i < model.rowCount(); ++i )
                 {
                     var mountainId = model.data( model.index(i,0), MountainRole.Id );
@@ -48,6 +51,7 @@ Window {
                 }
 
                 map.selectedMountainId = model.data( model.index( currentIndex,0), MountainRole.Id );
+                map.fitToMountain( map.selectedMountainId );
             }
         }
 

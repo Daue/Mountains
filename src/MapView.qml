@@ -11,6 +11,19 @@ Map {
     signal hover( var _mountainId )
     signal hoverEnd( var _mountainId )
 
+    function fitToMountain( _mountainId ) {
+        var items = map.mapItems;
+        var itemsToFit = [];
+
+        for ( var i=0; i<items.length; ++i)
+        {
+            if ( _mountainId === items[i].mountainId )
+                itemsToFit.push( items[i] );
+        }
+
+        map.fitViewportToMapItems(items);
+    }
+
     plugin: Plugin {
         name: "osm"
         PluginParameter {
@@ -29,6 +42,8 @@ Map {
         delegate: MapQuickItem {
 
             id: item
+            property int mountainId: model.id
+
             anchorPoint.x: sourceItem.width/2
             anchorPoint.y: sourceItem.height
             coordinate: QtPositioning.coordinate( model.position.x, model.position.y )
@@ -53,7 +68,7 @@ Map {
                     z: -1
                     radius: width/2
                     opacity: 0.8
-                    visible: selectedMountainId === model.id
+                    visible: selectedMountainId === item.mountainId
                     border.width: 1
                     border.color: "green"
                 }
@@ -63,9 +78,11 @@ Map {
                 id: mouseArea
                 anchors.fill: parent
                 hoverEnabled: true
+
                 onClicked: {
                     selectedMountainId = model.id;
                 }
+
                 onEntered:
                 {
                     var mountain = mountainsModel.getMountainById( id );
@@ -85,7 +102,7 @@ Map {
                     var popupOffset = 10;
 
                     popup.x
-                        = mousePos.x + popupOffset + popup.width < map.width
+                        = mousePos.x + popupOffset + popup.width < map.widt
                         ? mousePos.x + popupOffset
                         : mousePos.x - popup.width - popupOffset;
 
