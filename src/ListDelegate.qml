@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.0
 
 Rectangle {
     id: root
@@ -13,6 +14,7 @@ Rectangle {
     Text{
         id: _name
         font.bold: true
+        font.pointSize: 10
         text: ( model.index + 1 ) + ". " + model.name
         anchors.top: parent.top
         anchors.left: parent.left
@@ -51,6 +53,16 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: root.ListView.view.currentIndex = index
+    }
+
+    CheckBox {
+        anchors.right: parent.right
+        anchors.top: parent.top
+        checked: true
+        checkable: true
+        indicator.width: 16
+        indicator.height: 16
+        //icon.source:
     }
 
     Behavior on color {

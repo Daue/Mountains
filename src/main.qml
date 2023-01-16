@@ -18,13 +18,15 @@ Window {
         ListView
         {
             id: list
-            SplitView.preferredWidth: 150
+            SplitView.preferredWidth: 200
 
             spacing: 2
             anchors.margins: 2
             model: mountainsSortModel
             delegate: ListDelegate{}
-            ScrollBar.vertical: ScrollBar {}
+            ScrollBar.vertical: ScrollBar {
+               Component.onCompleted: x = -list.anchors.margins
+            }
             currentIndex: -1
             highlightMoveDuration: 300
 
