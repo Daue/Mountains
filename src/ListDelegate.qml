@@ -1,6 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 
+import mountains 1.0
+
 Rectangle {
     id: root
     width: ListView.view.width
@@ -58,11 +60,17 @@ Rectangle {
     CheckBox {
         anchors.right: parent.right
         anchors.top: parent.top
-        checked: true
+        checked: settings.getMountainUserData( model.id ).enabled
         checkable: true
         indicator.width: 16
         indicator.height: 16
-        //icon.source:
+
+        onCheckedChanged:
+        {
+            var data = settings.getMountainUserData( model.id );
+            data.enabled = checked;
+            settings.setMountainUserData( model.id, data );
+        }
     }
 
     Behavior on color {

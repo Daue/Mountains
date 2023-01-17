@@ -4,12 +4,15 @@ HEADERS += \
 	src/cursor.hpp \
 	src/mountain.hpp \
 	src/mountain_role.hpp \
-	src/mountains_model.hpp
+	src/mountain_user_data.hpp \
+	src/mountains_model.hpp \
+	src/settings.hpp
 
 SOURCES += \
 	src/cursor.cpp \
 	src/main.cpp \
-	src/mountains_model.cpp
+	src/mountains_model.cpp \
+	src/settings.cpp
 
 RESOURCES += \
 	Mountains.qrc
