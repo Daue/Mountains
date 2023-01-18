@@ -3,11 +3,15 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import mountains 1.0
 
+import "creator.js" as Creator
+
 Window {
     width: 1200
     height: 800
     visible: true
     title: qsTr("Korona Gór Polski")
+
+
 
     SplitView
     {
@@ -23,7 +27,15 @@ Window {
             spacing: 2
             anchors.margins: 2
             model: mountainsSortModel
-            delegate: ListDelegate{}
+            delegate: ListDelegate{
+                onChecked: function(_enabled)
+                {
+                    Creator.showDatePickerDialog();
+                    console.log( model.id + "," + _enabled );
+                    picker.title = model.name + " - data zdobycia:"
+                    picker.open()
+                }
+            }
             ScrollBar.vertical: ScrollBar {
                Component.onCompleted: x = -list.anchors.margins
             }
@@ -55,6 +67,8 @@ Window {
                 map.selectedMountainId = model.data( model.index( currentIndex,0), MountainRole.Id );
                 map.fitToMountain( map.selectedMountainId );
             }
+
+
         }
 
         MapView{
@@ -78,5 +92,8 @@ Window {
             }
         }
     }
+
+     //dave create dynamicallly ?
+     DatePicker { id:picker }
 
 }

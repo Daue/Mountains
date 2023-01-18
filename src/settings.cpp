@@ -4,11 +4,6 @@
 #include <QSettings>
 #include <QStandardPaths>
 
-namespace
-{
-	const QString SettingsFileName = "settings.ini";
-}
-
 Settings::Settings(QObject* _parent)
 	: QObject{ _parent }
 {
@@ -39,11 +34,11 @@ Settings::getMountainUserData(int _mountainId)
 void
 Settings::save()
 {
-	QSettings settings( SettingsFileName, QSettings::IniFormat );
+	QSettings settings( "settings.ini", QSettings::IniFormat );
 }
 
 void
 Settings::load()
 {
-	QSettings settings( SettingsFileName, QSettings::IniFormat );
+	QSettings settings( "settings.ini", QSettings::IniFormat );
 }

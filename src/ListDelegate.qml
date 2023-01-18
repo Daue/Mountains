@@ -1,9 +1,11 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.0
+import QtQuick.Controls 2.15
 
 import mountains 1.0
 
 Rectangle {
+    signal checked( var _enabled )
+
     id: root
     width: ListView.view.width
     height: 60
@@ -65,12 +67,14 @@ Rectangle {
         indicator.width: 16
         indicator.height: 16
 
-        onCheckedChanged:
-        {
-            var data = settings.getMountainUserData( model.id );
-            data.enabled = checked;
-            settings.setMountainUserData( model.id, data );
-        }
+        onCheckedChanged: root.checked( checked )
+    }
+
+    Dialog {
+        id: dialog
+        title: "Dave"
+        modal: true
+        standardButtons: Dialog.Ok
     }
 
     Behavior on color {

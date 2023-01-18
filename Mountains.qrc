@@ -5,6 +5,8 @@
         <file>src/MapPopup.qml</file>
         <file>src/ListDelegate.qml</file>
         <file>src/SplitViewHandle.qml</file>
+        <file>src/DatePicker.qml</file>
+        <file>src/creator.js</file>
     </qresource>
     <qresource prefix="/img">
         <file>res/mountain_pin.png</file>
