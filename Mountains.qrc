@@ -6,7 +6,8 @@
         <file>src/ListDelegate.qml</file>
         <file>src/SplitViewHandle.qml</file>
         <file>src/DatePicker.qml</file>
-        <file>src/creator.js</file>
+        <file>src/view_manager.js</file>
+        <file>src/InfoPopup.qml</file>
     </qresource>
     <qresource prefix="/img">
         <file>res/mountain_pin.png</file>

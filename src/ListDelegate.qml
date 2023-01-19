@@ -1,10 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.15
 
-import mountains 1.0
-
 Rectangle {
-    signal checked( var _enabled )
+    property alias checkBox: _checkBox
 
     id: root
     width: ListView.view.width
@@ -60,14 +58,13 @@ Rectangle {
     }
 
     CheckBox {
+        id: _checkBox
         anchors.right: parent.right
         anchors.top: parent.top
-        checked: settings.getMountainUserData( model.id ).enabled
+        checked: false
         checkable: true
         indicator.width: 16
         indicator.height: 16
-
-        onCheckedChanged: root.checked( checked )
     }
 
     Dialog {

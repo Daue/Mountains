@@ -72,5 +72,5 @@ Rectangle {
 //                   drag.target: parent
 //               }
     // the content
-   }
+
 }

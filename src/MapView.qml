@@ -11,19 +11,6 @@ Map {
     signal hover( var _mountainId )
     signal hoverEnd( var _mountainId )
 
-    function fitToMountain( _mountainId ) {
-        var items = map.mapItems;
-        var itemsToFit = [];
-
-        for ( var i=0; i<items.length; ++i)
-        {
-            if ( _mountainId === items[i].mountainId )
-                itemsToFit.push( items[i] );
-        }
-
-        map.fitViewportToMapItems(items);
-    }
-
     plugin: Plugin {
         name: "osm"
         PluginParameter {
