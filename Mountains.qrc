@@ -6,7 +6,7 @@
         <file>src/ListDelegate.qml</file>
         <file>src/SplitViewHandle.qml</file>
         <file>src/DatePicker.qml</file>
-        <file>src/view_manager.js</file>
+        <file>src/managers.js</file>
         <file>src/InfoPopup.qml</file>
     </qresource>
     <qresource prefix="/img">
