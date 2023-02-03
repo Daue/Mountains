@@ -24,10 +24,14 @@ ViewManager.selectMountainById = function( _mountainId )
     if ( this.list.currentIndex !== listIndex )
         this.list.currentIndex = listIndex;
 
-    if ( SettingsManager.isMountainEnabled( _mountainId ) )
+    if ( SettingsManager.isMountainChecked( _mountainId ) )
         this.infoPopup.open( _mountainId )
     else
         this.infoPopup.close()
+}
+
+ViewManager.onMountainChecked = function( _mountainId, _checked ) {
+    this.map.checkMountain(_mountainId,_checked);
 }
 
 function findIndexByMountainId( _list, _mountainId ) {
@@ -47,12 +51,13 @@ function findIndexByMountainId( _list, _mountainId ) {
 
 var SettingsManager = {}
 
-SettingsManager.isMountainEnabled = function( _mountainId ) {
-    return settings.getMountainUserData( _mountainId ).enabled;
+SettingsManager.isMountainChecked = function( _mountainId ) {
+    return settings.getMountainUserData( _mountainId ).checked;
 }
 
-SettingsManager.setMountainEnabled = function( _mountainId, _enabled ) {
+SettingsManager.setMountainChecked = function( _mountainId, _checked ) {
     var userData = settings.getMountainUserData( _mountainId );
-    userData.enabled = _enabled
+    userData.checked = _checked
     settings.setMountainUserData( _mountainId, userData )
+    ViewManager.onMountainChecked(_mountainId,_checked);
 }

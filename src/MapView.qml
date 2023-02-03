@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtLocation 5.15
 import QtPositioning 5.15
 
+import "managers.js" as Managers
+
 Map {
     id: map
 
@@ -10,6 +12,18 @@ Map {
     signal hoverStart( var _mountainId )
     signal hover( var _mountainId )
     signal hoverEnd( var _mountainId )
+
+    function checkMountain( _mountainId, _checked ) {
+        for ( var i=0; i<mapItems.length; ++i)
+        {
+            var item = mapItems[i];
+            if ( item.mountainId === _mountainId )
+            {
+                item.mountainChecked = _checked;
+                break;
+            }
+        }
+    }
 
     plugin: Plugin {
         name: "osm"
@@ -30,16 +44,18 @@ Map {
 
             id: item
             property int mountainId: model.id
+            property bool mountainChecked: Managers.SettingsManager.isMountainChecked( model.id )
 
             anchorPoint.x: sourceItem.width/2
             anchorPoint.y: sourceItem.height
             coordinate: QtPositioning.coordinate( model.position.x, model.position.y )
             z: ( selectedMountainId === model.id ) ? 100 : model.position.y
             scale: ( mouseArea.containsMouse || selectedMountainId === model.id ) ? 1.3 : 1
-            opacity: map.zoomLevel > 14 ? 0.7 : 1
+            opacity: map.zoomLevel > 14 ? 0.4 : 1
 
             sourceItem: Image {
-                source: "qrc:/img/res/mountain_pin.png"
+                id: _image
+                source: mountainChecked ? "qrc:/img/res/mountain_pin_checked.png" : "qrc:/img/res/mountain_pin_unchecked.png"
                 antialiasing: true
                 sourceSize.width: 20
                 sourceSize.height: 40
@@ -56,8 +72,8 @@ Map {
                     radius: width/2
                     opacity: 0.8
                     visible: selectedMountainId === item.mountainId
-                    border.width: 1
-                    border.color: "green"
+                    border.width: 2
+                    border.color: mountainChecked ? "green" : "darkgreen"
                 }
             }
 

@@ -25,9 +25,9 @@ Window {
             model: mountainsSortModel
 
             delegate: ListDelegate{
-                checkBox.checked: Managers.SettingsManager.isMountainEnabled( model.id )
+                checkBox.checked: Managers.SettingsManager.isMountainChecked( model.id )
                 checkBox.onCheckedChanged: {
-                    Managers.SettingsManager.setMountainEnabled( model.id, checkBox.checked );
+                    Managers.SettingsManager.setMountainChecked( model.id, checkBox.checked );
                     Managers.ViewManager.selectMountainById( model.id );
                 }
             }
