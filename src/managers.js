@@ -25,7 +25,7 @@ ViewManager.selectMountainById = function( _mountainId )
         this.list.currentIndex = listIndex;
 
     if ( SettingsManager.isMountainEnabled( _mountainId ) )
-        this.infoPopup.open()
+        this.infoPopup.open( _mountainId )
     else
         this.infoPopup.close()
 }
