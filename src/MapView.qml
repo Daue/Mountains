@@ -62,7 +62,7 @@ Map {
 
                 Rectangle {
                     id: glow
-                    width: 38
+                    width: 40
                     height: width
                     color: "white"
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -70,10 +70,10 @@ Map {
                     anchors.verticalCenterOffset: -2
                     z: -1
                     radius: width/2
-                    opacity: 0.8
+                    opacity: 0.6
                     visible: selectedMountainId === item.mountainId
-                    border.width: 2
-                    border.color: mountainChecked ? "green" : "darkgreen"
+                    border.width: 1
+                    border.color: mountainChecked ? "black" : "black"
                 }
             }
 

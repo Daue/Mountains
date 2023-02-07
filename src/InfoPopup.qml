@@ -3,6 +3,7 @@ import QtQuick 2.0
 Rectangle {
     id: root
     property int mountainId : -1
+    signal editClicked
 
     function open(_mountainId) {
         root.x = parent.width - root.width
@@ -15,7 +16,7 @@ Rectangle {
 
     x: parent.width
     width: 300
-    height: 90
+    height: 120
     anchors.bottom: parent.bottom
     border.width: 1
     border.color: "black"
@@ -56,11 +57,26 @@ Rectangle {
         Row {
             x: 30
             Text {
-                text: "Data zdobycia: ???"
+                text: "Data zdobycia: ??-??-????"
                 font.pointSize: 10
             }
         }
+    }
 
+    Image {
+        id: _editButton
+        anchors.margins: 4
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        source: "qrc:/img/res/edit_icon.png"
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            if ( _editButton.contains( mapToItem( _editButton, mouse.x, mouse.y ) ) )
+                root.editClicked()
+        }
     }
 
     onMountainIdChanged: {

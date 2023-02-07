@@ -60,7 +60,10 @@ Window {
         }
     }
 
-    InfoPopup{ id: infoPopup }
+    InfoPopup{
+        id: infoPopup
+        onEditClicked: console.log( "EDIT ")
+    }
 
     Component.onCompleted: {
         Managers.ViewManager._construct(map, list, infoPopup );
