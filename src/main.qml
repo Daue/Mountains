@@ -20,13 +20,15 @@ Window {
         {
             id: list
 
-            spacing: 2
+            spacing: 0
             anchors.margins: 2
             model: mountainsSortModel
 
             delegate: ListDelegate{
                 checkBox.checked: Managers.SettingsManager.isMountainChecked( model.id )
                 checkBox.onCheckedChanged: {
+                    if ( Managers.SettingsManager.isMountainChecked( model.id ) === checkBox.checked )
+                        return;
                     Managers.SettingsManager.setMountainChecked( model.id, checkBox.checked );
                     Managers.ViewManager.selectMountainById( model.id );
                 }
@@ -36,9 +38,11 @@ Window {
             }
             currentIndex: -1
             highlightMoveDuration: 300
-            onCurrentIndexChanged: Managers.ViewManager.selectMountainById( currentIndex )
+            onCurrentIndexChanged: {
+                Managers.ViewManager.selectMountainById( currentIndex )
+            }
 
-            SplitView.preferredWidth: 200
+            SplitView.minimumWidth: 200
         }
 
         MapView{
@@ -61,11 +65,11 @@ Window {
     }
 
     InfoPopup{
-        id: infoPopup
-        onEditClicked: console.log( "EDIT ")
+        id: mountainInfo
+        onEditClicked: Managers.ViewManager.openDatePickerDialog()
     }
 
     Component.onCompleted: {
-        Managers.ViewManager._construct(map, list, infoPopup );
+        Managers.ViewManager._construct(map, list, mountainInfo );
     }
 }

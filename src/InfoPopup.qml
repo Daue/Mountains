@@ -22,6 +22,11 @@ Rectangle {
     border.color: "black"
     color: "white"
 
+
+    MouseArea {
+        anchors.fill: parent
+    }
+
     Column {
 
         anchors.fill: parent
@@ -69,13 +74,14 @@ Rectangle {
         anchors.right: parent.right
         anchors.bottom: parent.bottom
         source: "qrc:/img/res/edit_icon.png"
-    }
+        scale: mouseArea.containsMouse ? 1.1 : 1
+        antialiasing: true
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            if ( _editButton.contains( mapToItem( _editButton, mouse.x, mouse.y ) ) )
-                root.editClicked()
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            onClicked: root.editClicked()
+            hoverEnabled: true
         }
     }
 

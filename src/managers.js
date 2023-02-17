@@ -4,6 +4,7 @@ ViewManager._construct = function( _map, _list, _infoPopup ) {
     this.map = _map;
     this.list = _list;
     this.infoPopup = _infoPopup;
+    this.datePickerDialog = null
 }
 
 ViewManager.selectMountainById = function( _mountainId )
@@ -32,6 +33,13 @@ ViewManager.selectMountainById = function( _mountainId )
 
 ViewManager.onMountainChecked = function( _mountainId, _checked ) {
     this.map.checkMountain(_mountainId,_checked);
+}
+
+ViewManager.openDatePickerDialog = function() {
+    var component = Qt.createComponent( "DatePicker.qml")
+    this.datePickerDialog = component.createObject( this.map.parent, {} )
+    this.datePickerDialog.anchors.centerIn = this.map.parent
+    this.datePickerDialog.open()
 }
 
 function findIndexByMountainId( _list, _mountainId ) {
