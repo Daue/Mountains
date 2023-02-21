@@ -8,10 +8,31 @@ Rectangle {
     function open(_mountainId) {
         root.x = parent.width - root.width
         root.mountainId = _mountainId;
+        root.update();
     }
 
     function close() {
        root.x = parent.width
+    }
+
+    function update() {
+        if ( root.mountainId === -1 )
+        {
+            _mountainNameText.text = "";
+            _mountainHeightText.text = "";
+            _dateText.text = "Data zdobycia: ??-??-????";
+            return;
+        }
+
+        var mountainInfo = mountainsModel.getMountainById( root.mountainId );
+        _mountainNameText.text = mountainInfo.name;
+        _mountainHeightText.text = "(" + mountainInfo.height + " m n.p.m.)";
+
+        var mountainUserData = settings.getMountainUserData( root.mountainId )
+        if ( mountainUserData.date.toLocaleDateString() !== "" )
+            _dateText.text = "Data zdobycia: " + mountainUserData.date.toLocaleDateString( Qt.locale(), "dd MMMM yyyy" )
+        else
+            _dateText.text = "Data zdobycia: ??-??-????";
     }
 
     x: parent.width
@@ -62,7 +83,7 @@ Rectangle {
         Row {
             x: 30
             Text {
-                text: "Data zdobycia: ??-??-????"
+                id: _dateText
                 font.pointSize: 10
             }
         }
@@ -73,9 +94,9 @@ Rectangle {
         anchors.margins: 4
         anchors.right: parent.right
         anchors.bottom: parent.bottom
+        anchors.rightMargin: mouseArea.containsMouse ? anchors.margins + 2 : anchors.margins
+        anchors.bottomMargin: mouseArea.containsMouse ? anchors.margins + 2 : anchors.margins
         source: "qrc:/img/res/edit_icon.png"
-        scale: mouseArea.containsMouse ? 1.1 : 1
-        antialiasing: true
 
         MouseArea {
             id: mouseArea
@@ -85,18 +106,7 @@ Rectangle {
         }
     }
 
-    onMountainIdChanged: {
-        if ( root.mountainId == -1 )
-        {
-            _mountainNameText.text = "";
-            _mountainHeightText.text = "";
-            return;
-        }
-
-        var mountainInfo = mountainsModel.getMountainById( root.mountainId );
-        _mountainNameText.text = mountainInfo.name;
-        _mountainHeightText.text = "(" + mountainInfo.height + " m n.p.m.)";
-    }
+    onMountainIdChanged: root.update()
 
     Behavior on x {
          PropertyAnimation{ duration: 250; easing.type: Easing.OutCubic  }

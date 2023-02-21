@@ -35,11 +35,28 @@ ViewManager.onMountainChecked = function( _mountainId, _checked ) {
     this.map.checkMountain(_mountainId,_checked);
 }
 
+ViewManager.onMountainDateChanged = function( _mountainId ) {
+    this.infoPopup.update()
+}
+
 ViewManager.openDatePickerDialog = function() {
     var component = Qt.createComponent( "DatePicker.qml")
-    this.datePickerDialog = component.createObject( this.map.parent, {} )
+    this.datePickerDialog = component.createObject( this.map.parent )
+
+    if ( this.map.selectedMountainId !== -1 )
+    {
+        var userData = settings.getMountainUserData( this.map.selectedMountainId );
+        if ( userData.date.toLocaleTimeString() !== "" )
+            this.datePickerDialog.selectedDate = userData.date
+        else
+            this.datePickerDialog.selectedDate = new Date()
+    }
+
     this.datePickerDialog.anchors.centerIn = this.map.parent
     this.datePickerDialog.open()
+    this.datePickerDialog.accepted.connect( () => {
+             SettingsManager.setMountainDate( this.map.selectedMountainId, this.datePickerDialog.selectedDate )
+         } );
 }
 
 function findIndexByMountainId( _list, _mountainId ) {
@@ -56,7 +73,6 @@ function findIndexByMountainId( _list, _mountainId ) {
      return -1;
 }
 
-
 var SettingsManager = {}
 
 SettingsManager.isMountainChecked = function( _mountainId ) {
@@ -68,4 +84,15 @@ SettingsManager.setMountainChecked = function( _mountainId, _checked ) {
     userData.checked = _checked
     settings.setMountainUserData( _mountainId, userData )
     ViewManager.onMountainChecked(_mountainId,_checked);
+}
+
+SettingsManager.getMountainDate = function( _mountainId ) {
+    return settings.getMountainUserData( _mountainId ).date;
+}
+
+SettingsManager.setMountainDate = function( _mountainId, date ) {
+    var userData = settings.getMountainUserData( _mountainId );
+    userData.date = date
+    settings.setMountainUserData( _mountainId, userData )
+    ViewManager.onMountainDateChanged( _mountainId )
 }

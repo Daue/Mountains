@@ -51,15 +51,6 @@ Window {
             model: mountainsModel
             onSelectedMountainIdChanged: Managers.ViewManager.selectMountainById( map.selectedMountainId );
 
-            onHoverStart: (id) => {
-            }
-
-            onHover: (id) => {
-            }
-
-            onHoverEnd: (id) => {
-            }
-
             SplitView.fillWidth: true
         }
     }

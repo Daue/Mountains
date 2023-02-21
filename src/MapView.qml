@@ -9,9 +9,6 @@ Map {
 
     property alias model : repeater.model
     property int selectedMountainId: -1
-    signal hoverStart( var _mountainId )
-    signal hover( var _mountainId )
-    signal hoverEnd( var _mountainId )
 
     function checkMountain( _mountainId, _checked ) {
         for ( var i=0; i<mapItems.length; ++i)
@@ -92,8 +89,6 @@ Map {
                     popup.title = mountain.name + " (" + mountain.height + " m n.p.m.)"
                     popup.description = mountain.range
                     popup.show()
-
-                    map.hoverStart( model.id );
                 }
 
                 onPositionChanged:
@@ -109,14 +104,11 @@ Map {
                         : mousePos.x - popup.width - popupOffset;
 
                     popup.y = mousePos.y - popup.height - popupOffset;
-
-                    map.hover( model.id );
                 }
 
                 onExited:
                 {
                     popup.hide()
-                    map.hoverEnd( model.id );
                 }
             }
         }
