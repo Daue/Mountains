@@ -15,6 +15,7 @@ Window {
         anchors.fill: parent
         orientation: Qt.Horizontal
         handle: SplitViewHandle{}
+        hoverEnabled: false
 
         ListView
         {
@@ -24,15 +25,7 @@ Window {
             anchors.margins: 2
             model: mountainsSortModel
 
-            delegate: ListDelegate{
-                checkBox.checked: Managers.SettingsManager.isMountainChecked( model.id )
-                checkBox.onCheckedChanged: {
-                    if ( Managers.SettingsManager.isMountainChecked( model.id ) === checkBox.checked )
-                        return;
-                    Managers.SettingsManager.setMountainChecked( model.id, checkBox.checked );
-                    Managers.ViewManager.selectMountainById( model.id );
-                }
-            }
+            delegate: ListDelegate{}
             ScrollBar.vertical: ScrollBar {
                Component.onCompleted: x = -list.anchors.margins
             }
@@ -42,7 +35,8 @@ Window {
                 Managers.ViewManager.selectMountainById( currentIndex )
             }
 
-            SplitView.minimumWidth: 200
+            SplitView.minimumWidth: 160
+            SplitView.maximumWidth: 160
         }
 
         MapView{

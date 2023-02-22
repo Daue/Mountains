@@ -2,8 +2,6 @@ import QtQuick 2.0
 import QtQuick.Controls 2.15
 
 Rectangle {
-    property alias checkBox: _checkBox
-
     id: root
     width: ListView.view.width
     height: 60
@@ -17,16 +15,16 @@ Rectangle {
         id: _name
         font.bold: true
         font.pointSize: 10
-        text: ( model.index + 1 ) + ". " + model.name
+        text: ( model.id + 1 ) + ". " + model.name
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.margins: 6
+        anchors.margins: 8
     }
 
     Rectangle {
         height: childrenRect.height
         anchors.top: _name.bottom
-        anchors.topMargin: 3
+        anchors.topMargin: 2
         anchors.left: _name.left
 
         Column
@@ -55,16 +53,6 @@ Rectangle {
         anchors.fill: parent
         hoverEnabled: true
         onClicked: root.ListView.view.currentIndex = index
-    }
-
-    CheckBox {
-        id: _checkBox
-        anchors.right: parent.right
-        anchors.top: parent.top
-        checked: false
-        checkable: true
-        indicator.width: 16
-        indicator.height: 16
     }
 
     Dialog {

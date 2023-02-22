@@ -25,10 +25,7 @@ ViewManager.selectMountainById = function( _mountainId )
     if ( this.list.currentIndex !== listIndex )
         this.list.currentIndex = listIndex;
 
-    if ( SettingsManager.isMountainChecked( _mountainId ) )
-        this.infoPopup.open( _mountainId )
-    else
-        this.infoPopup.close()
+    this.infoPopup.open( _mountainId )
 }
 
 ViewManager.onMountainChecked = function( _mountainId, _checked ) {

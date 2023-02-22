@@ -1,9 +1,11 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.0
+import "managers.js" as Managers
 
 Rectangle {
     id: root
     property int mountainId : -1
-    signal editClicked
+    signal editClicked;
 
     function open(_mountainId) {
         root.x = parent.width - root.width
@@ -37,7 +39,7 @@ Rectangle {
 
     x: parent.width
     width: 300
-    height: 120
+    height: _checkBox.checked ? 90 : 50
     anchors.bottom: parent.bottom
     border.width: 1
     border.color: "black"
@@ -80,23 +82,33 @@ Rectangle {
             opacity: 0.4
         }
 
-        Row {
-            x: 30
-            Text {
-                id: _dateText
-                font.pointSize: 10
-            }
+        Text {
+            x: 10
+            id: _dateText
+            font.pointSize: 10
         }
+    }
+
+    CheckBox {
+        id: _checkBox
+        checked: false
+        checkable: true
+        anchors.right: parent.right
+        anchors.top: parent.top
+        indicator.width: 20
+        indicator.height: 20
     }
 
     Image {
         id: _editButton
-        anchors.margins: 4
+        source: "qrc:/img/res/edit_icon.png"
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.rightMargin: mouseArea.containsMouse ? anchors.margins + 2 : anchors.margins
-        anchors.bottomMargin: mouseArea.containsMouse ? anchors.margins + 2 : anchors.margins
-        source: "qrc:/img/res/edit_icon.png"
+        anchors.margins: 10
+        width: 16
+        height: 16
+        scale: mouseArea.containsMouse ? 1.1 : 1.0
+        visible: _checkBox.checked
 
         MouseArea {
             id: mouseArea
