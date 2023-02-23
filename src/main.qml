@@ -52,6 +52,12 @@ Window {
     InfoPopup{
         id: mountainInfo
         onEditClicked: Managers.ViewManager.openDatePickerDialog()
+        onCheckedChanged: function( _checked ) {
+            if ( Managers.SettingsManager.isMountainChecked( map.selectedMountainId ) === _checked )
+                return;
+            Managers.SettingsManager.setMountainChecked( map.selectedMountainId, _checked );
+            Managers.ViewManager.selectMountainById( map.selectedMountainId );
+        }
     }
 
     Component.onCompleted: {

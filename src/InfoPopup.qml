@@ -5,16 +5,20 @@ import "managers.js" as Managers
 Rectangle {
     id: root
     property int mountainId : -1
+    property bool isOpened: false
     signal editClicked;
+    signal checkedChanged( var _checked);
 
     function open(_mountainId) {
-        root.x = parent.width - root.width
         root.mountainId = _mountainId;
         root.update();
+        root.isOpened = true
+        _xAnimation.start();
     }
 
     function close() {
-       root.x = parent.width
+        root.isOpened = false
+       _xAnimation.start();
     }
 
     function update() {
@@ -23,14 +27,17 @@ Rectangle {
             _mountainNameText.text = "";
             _mountainHeightText.text = "";
             _dateText.text = "Data zdobycia: ??-??-????";
+            _checkBox.checked = false
             return;
         }
 
         var mountainInfo = mountainsModel.getMountainById( root.mountainId );
+        var mountainUserData = settings.getMountainUserData( root.mountainId )
+
         _mountainNameText.text = mountainInfo.name;
         _mountainHeightText.text = "(" + mountainInfo.height + " m n.p.m.)";
+        _checkBox.checked = mountainUserData.checked
 
-        var mountainUserData = settings.getMountainUserData( root.mountainId )
         if ( mountainUserData.date.toLocaleDateString() !== "" )
             _dateText.text = "Data zdobycia: " + mountainUserData.date.toLocaleDateString( Qt.locale(), "dd MMMM yyyy" )
         else
@@ -41,9 +48,11 @@ Rectangle {
     width: 300
     height: _checkBox.checked ? 90 : 50
     anchors.bottom: parent.bottom
-    border.width: 1
+    anchors.margins: 4
+    border.width: 2
     border.color: "black"
     color: "white"
+    radius: 12
 
 
     MouseArea {
@@ -53,7 +62,7 @@ Rectangle {
     Column {
 
         anchors.fill: parent
-        anchors.topMargin: 10
+        anchors.topMargin: 14
         spacing: 10
 
         Row
@@ -80,12 +89,14 @@ Rectangle {
             width: parent.width - 20
             anchors.horizontalCenter: parent.horizontalCenter
             opacity: 0.4
+            visible: _checkBox.checked
         }
 
         Text {
             x: 10
             id: _dateText
             font.pointSize: 10
+            visible: _checkBox.checked
         }
     }
 
@@ -97,6 +108,8 @@ Rectangle {
         anchors.top: parent.top
         indicator.width: 20
         indicator.height: 20
+        anchors.topMargin: 6
+        onCheckedChanged: root.checkedChanged( checked )
     }
 
     Image {
@@ -120,7 +133,22 @@ Rectangle {
 
     onMountainIdChanged: root.update()
 
-    Behavior on x {
-         PropertyAnimation{ duration: 250; easing.type: Easing.OutCubic  }
+    PropertyAnimation {
+        id: _xAnimation
+        property: "x"
+        duration: 250
+        easing.type: Easing.OutCubic
+        to: root.isOpened ? parent.width - root.width - root.anchors.margins : parent.width;
+        target: root
+        onStarted: {
+            root.anchors.left = undefined
+            root.anchors.right = undefined
+        }
+        onStopped: {
+            if ( root.isOpened )
+                root.anchors.right = root.parent.right
+            else
+               root.anchors.left = root.parent.right
+        }
     }
 }
