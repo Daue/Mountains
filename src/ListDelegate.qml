@@ -3,8 +3,9 @@ import QtQuick.Controls 2.15
 
 Rectangle {
     id: root
-    width: ListView.view.width
-    height: 60
+    border.color: "darkgrey"
+    border.width: 1
+    radius: 6
 
     color:
           ListView.isCurrentItem
@@ -18,7 +19,8 @@ Rectangle {
         text: ( model.id + 1 ) + ". " + model.name
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.margins: 8
+        anchors.margins: 6
+        anchors.leftMargin: 10
     }
 
     Rectangle {
@@ -38,15 +40,15 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        width: parent.width - 8
-        height: 1
-        color: "black"
-        opacity: 0.4
+//    Rectangle {
+//        width: parent.width - 8
+//        height: 1
+//        color: "black"
+//        opacity: 0.4
 
-        anchors.bottom: parent.bottom
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
+//        anchors.bottom: parent.bottom
+//        anchors.horizontalCenter: parent.horizontalCenter
+//    }
 
     MouseArea {
         id: mouseArea

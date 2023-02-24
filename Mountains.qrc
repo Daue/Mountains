@@ -4,7 +4,6 @@
         <file>src/MapView.qml</file>
         <file>src/MapPopup.qml</file>
         <file>src/ListDelegate.qml</file>
-        <file>src/SplitViewHandle.qml</file>
         <file>src/DatePicker.qml</file>
         <file>src/managers.js</file>
         <file>src/InfoPopup.qml</file>

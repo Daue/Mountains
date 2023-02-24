@@ -14,18 +14,22 @@ Window {
     SplitView{
         anchors.fill: parent
         orientation: Qt.Horizontal
-        handle: SplitViewHandle{}
         hoverEnabled: false
+        handle: Rectangle { implicitWidth: 2; color: "lightgrey" }
 
         ListView
         {
             id: list
 
-            spacing: 0
+            spacing: 2
             anchors.margins: 2
             model: mountainsSortModel
 
-            delegate: ListDelegate{}
+            delegate: ListDelegate{
+                width: ListView.view.width - 10
+                height: 58
+                anchors.horizontalCenter: parent ? parent.horizontalCenter : undefined
+            }
             ScrollBar.vertical: ScrollBar {
                Component.onCompleted: x = -list.anchors.margins
             }
@@ -35,8 +39,8 @@ Window {
                 Managers.ViewManager.selectMountainById( currentIndex )
             }
 
-            SplitView.minimumWidth: 160
-            SplitView.maximumWidth: 160
+             SplitView.minimumWidth: 180
+             SplitView.maximumWidth: 180
         }
 
         MapView{
