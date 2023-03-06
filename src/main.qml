@@ -29,6 +29,7 @@ Window {
                 width: ListView.view.width - 10
                 height: 58
                 anchors.horizontalCenter: parent ? parent.horizontalCenter : undefined
+                flagVisible: Managers.SettingsManager.isMountainChecked( model.id )
             }
             ScrollBar.vertical: ScrollBar {
                Component.onCompleted: x = -list.anchors.margins

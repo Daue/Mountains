@@ -30,6 +30,10 @@ ViewManager.selectMountainById = function( _mountainId )
 
 ViewManager.onMountainChecked = function( _mountainId, _checked ) {
     this.map.checkMountain(_mountainId,_checked);
+
+    var listIndex = findIndexByMountainId( this.list, _mountainId )
+    var item = this.list.itemAtIndex( listIndex)
+    item.flagVisible = _checked
 }
 
 ViewManager.onMountainDateChanged = function( _mountainId ) {

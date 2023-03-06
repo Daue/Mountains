@@ -151,4 +151,8 @@ Rectangle {
                root.anchors.left = root.parent.right
         }
     }
+
+    Behavior on height {
+        PropertyAnimation { duration: 200 }
+    }
 }

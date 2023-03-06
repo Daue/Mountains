@@ -2,6 +2,9 @@ import QtQuick 2.0
 import QtQuick.Controls 2.15
 
 Rectangle {
+
+    property alias flagVisible: _flagImage.visible;
+
     id: root
     border.color: "darkgrey"
     border.width: 1
@@ -9,8 +12,8 @@ Rectangle {
 
     color:
           ListView.isCurrentItem
-        ? "#8890ee90"
-        : mouseArea.containsMouse ? "#2290ee90" : "white"
+        ? "#5590ee90"
+        : mouseArea.containsMouse ? "#1190ee90" : "white"
 
     Text{
         id: _name
@@ -40,15 +43,26 @@ Rectangle {
         }
     }
 
-//    Rectangle {
-//        width: parent.width - 8
-//        height: 1
-//        color: "black"
-//        opacity: 0.4
+    Image {
+        id: _flagImage
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        source: "qrc:/img/res/flag.png"
+        width: 30
+        height: 30
+        rotation: 20
 
-//        anchors.bottom: parent.bottom
-//        anchors.horizontalCenter: parent.horizontalCenter
-//    }
+        PropertyAnimation {
+            id: _scaleAnimation
+            target: _flagImage
+            property: "scale"
+            from: 2
+            to: 1
+            duration: 200
+        }
+
+        onVisibleChanged: _scaleAnimation.start()
+    }
 
     MouseArea {
         id: mouseArea

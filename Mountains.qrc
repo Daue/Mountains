@@ -12,5 +12,6 @@
         <file>res/mountain_pin_checked.png</file>
         <file>res/mountain_pin_unchecked.png</file>
         <file>res/edit_icon.png</file>
+        <file>res/flag.png</file>
     </qresource>
 </RCC>

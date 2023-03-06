@@ -48,7 +48,7 @@ Map {
             coordinate: QtPositioning.coordinate( model.position.x, model.position.y )
             z: ( selectedMountainId === model.id ) ? 100 : model.position.y
             scale: ( mouseArea.containsMouse || selectedMountainId === model.id ) ? 1.3 : 1
-            opacity: map.zoomLevel > 14 ? 0.4 : 1
+            opacity: map.zoomLevel > 14 ? 0.4 : 0.8
 
             sourceItem: Image {
                 id: _image
