@@ -17,6 +17,8 @@ SOURCES += \
 RESOURCES += \
 	Mountains.qrc
 
+win32:RC_ICONS += res/window_icon.ico
+
 
 #DISTFILES += \
 #	src/main.qml \

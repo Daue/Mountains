@@ -26,6 +26,7 @@ Rectangle {
         {
             _mountainNameText.text = "";
             _mountainHeightText.text = "";
+            _mountainRangeText.text ="";
             _dateText.text = "Data zdobycia: ??-??-????";
             _checkBox.checked = false
             return;
@@ -36,6 +37,7 @@ Rectangle {
 
         _mountainNameText.text = mountainInfo.name;
         _mountainHeightText.text = "(" + mountainInfo.height + " m n.p.m.)";
+        _mountainRangeText.text = mountainInfo.range;
         _checkBox.checked = mountainUserData.checked
 
         if ( mountainUserData.date.toLocaleDateString() !== "" )
@@ -46,7 +48,7 @@ Rectangle {
 
     x: parent.width
     width: 300
-    height: _checkBox.checked ? 90 : 50
+    height: _checkBox.checked ? 110 : 70
     anchors.bottom: parent.bottom
     anchors.margins: 4
     border.width: 2
@@ -63,7 +65,7 @@ Rectangle {
 
         anchors.fill: parent
         anchors.topMargin: 14
-        spacing: 10
+        spacing: 8
 
         Row
         {
@@ -81,6 +83,12 @@ Rectangle {
                 anchors.bottom: _mountainNameText.bottom
                 font.pointSize: 11
             }
+        }
+
+        Text {
+            x: 10
+            id: _mountainRangeText
+            font.pointSize: 11
         }
 
         Rectangle {

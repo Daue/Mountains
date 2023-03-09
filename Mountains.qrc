@@ -13,5 +13,7 @@
         <file>res/mountain_pin_unchecked.png</file>
         <file>res/edit_icon.png</file>
         <file>res/flag.png</file>
+        <file>res/fit_zoom.png</file>
+        <file>res/window_icon.ico</file>
     </qresource>
 </RCC>

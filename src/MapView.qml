@@ -47,7 +47,7 @@ Map {
             anchorPoint.y: sourceItem.height
             coordinate: QtPositioning.coordinate( model.position.x, model.position.y )
             z: ( selectedMountainId === model.id ) ? 100 : model.position.y
-            scale: ( mouseArea.containsMouse || selectedMountainId === model.id ) ? 1.3 : 1
+            scale: ( selectedMountainId === model.id ) ? 1.5 : ( mouseArea.containsMouse ? 1.3 : 1 )
             opacity: map.zoomLevel > 14 ? 0.4 : 0.8
 
             sourceItem: Image {
@@ -122,6 +122,29 @@ Map {
     MapPopup {
         id: popup
         z: 1000
+    }
+
+    Rectangle {
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.rightMargin: 5
+        anchors.topMargin: 5
+        opacity: 0.8
+        color: "white"
+        width: 32
+        height: 32
+        Image {
+            id: _fitZoomImage
+            source: "qrc:/img/res/fit_zoom.png"
+            anchors.centerIn: parent
+            width: parent.width
+            height: parent.height
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onClicked: map.fitViewportToVisibleMapItems()
+        }
     }
 
     onMapReadyChanged: {
