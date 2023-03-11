@@ -12,6 +12,7 @@ class Settings : public QObject
 
 public:
 	explicit Settings( QObject* _parent = nullptr);
+	~Settings();
 
 	Q_INVOKABLE void setMountainUserData( int _mountainId, MountainUserData _data );
 	Q_INVOKABLE QVariant getMountainUserData( int _mountainId );
