@@ -1,7 +1,6 @@
 #include "settings.hpp"
 
 #include <QDebug>
-//#include <QSettings>
 #include <QStandardPaths>
 #include <QXmlStreamWriter>
 #include <QXmlStreamReader>
@@ -48,27 +47,25 @@ Settings::save()
 	QXmlStreamWriter writer( &file );
 	writer.setAutoFormatting( true );
 
-	writer.writeStartDocument( "1.0");
+	writer.writeStartDocument();
+	writer.writeStartElement("root");
+
+	//write mountains
+	for ( auto it = m_mountainsUserData.begin(); it != m_mountainsUserData.end(); ++it )
 	{
-		writer.writeStartElement("root");
+		if ( !it.value().m_checked )
+			continue;
 
-		for ( auto it = m_mountainsUserData.begin(); it != m_mountainsUserData.end(); ++it )
-		{
-			//write mountain
-			if ( !it.value().m_checked )
-				continue;
+		writer.writeStartElement("mountain");
+		writer.writeAttribute("id", QString::number( it.key() ));
 
-			writer.writeStartElement("mountain");
-			writer.writeAttribute("id", QString::number( it.key() ));
-
-			if ( it.value().m_date.isValid() )
-				writer.writeAttribute("date", it.value().m_date.toString("dd-MM-yyyy"));
-
-			writer.writeEndElement();
-		}
+		if ( it.value().m_date.isValid() )
+			writer.writeAttribute("date", it.value().m_date.toString("dd-MM-yyyy"));
 
 		writer.writeEndElement();
 	}
+
+	writer.writeEndElement();
 	writer.writeEndDocument();
 
 	file.close();
