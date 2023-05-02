@@ -23,7 +23,7 @@ Item {
         color: "white"
         border.color: "black"
         border.width: 1
-        radius: 6
+        radius: 5
 
         Column
         {

@@ -6,9 +6,17 @@ Rectangle {
     property alias flagVisible: _flagImage.visible;
 
     id: root
-    border.color: "darkgrey"
-    border.width: 1
-    radius: 6
+    //border.color: "darkgrey"
+    //border.width: 1
+    //radius: 1
+
+    Rectangle {
+        width: parent.width
+        height: 1
+        //border.color: "darkgrey"
+        //border.width: 1
+        color: "darkgrey"
+    }
 
     color:
           ListView.isCurrentItem

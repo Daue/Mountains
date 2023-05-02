@@ -54,7 +54,7 @@ Rectangle {
     border.width: 2
     border.color: "black"
     color: "white"
-    radius: 12
+    radius: 6
 
 
     MouseArea {
