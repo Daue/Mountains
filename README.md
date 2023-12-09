@@ -9,6 +9,6 @@ Includes:
 
 ![mountain_view](https://github.com/Daue/Mountains/assets/5504430/e3417746-ea51-4399-8652-6403eb751f4c)
 
-##Instalator:
+## Instalator:
 [Mountains/instalator/win64/mountains_instalator.exe](https://github.com/Daue/Mountains/instalator/win64/mountains_instalator.exe)
 
