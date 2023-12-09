@@ -8,7 +8,3 @@ Includes:
 ![main_window](https://github.com/Daue/Mountains/assets/5504430/92db0ec9-0ab4-4480-a7f6-c02d403ba25a)
 
 ![mountain_view](https://github.com/Daue/Mountains/assets/5504430/e3417746-ea51-4399-8652-6403eb751f4c)
-
-## Instalator:
-[Mountains/instalator/win64/mountains_instalator.exe](https://github.com/Daue/Mountains/instalator/win64/mountains_instalator.exe)
-
